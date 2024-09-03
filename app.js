@@ -1,11 +1,24 @@
 const express = require("express");
-const connectDB = require("./db/connectDb");
+const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
+const connectDB = require("./db/connectDb");
+const authRoute = require("./routes/authRoute");
 
 const app = express();
 
+app.use(express.json());
+app.use(morgan("dev"));
+app.use(cookieParser(process.env.JWT_SECRET));
+app.use(express.static("./public"));
+
+//Auth Routes
+app.use("/api/v1/auth", authRoute);
+
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  //console.log(req.cookies);
+  console.log(req.signedCookies);
+  res.send("<h1>Store API</h1><a href='/api/v1/auth/register'>Register</a>");
 });
 
 const port = process.env.PORT || 5000;
