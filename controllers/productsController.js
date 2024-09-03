@@ -4,9 +4,50 @@ const path = require("path");
 
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find({}).select(
-      "-__v -createdAt -updatedAt"
-    );
+    //filtering
+    let queryObj = { ...req.query };
+    const excludeFields = ["page", "limit", "sort", "fields"];
+    excludeFields.forEach((el) => delete queryObj[el]);
+
+    queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    queryObj = JSON.parse(queryStr);
+
+    let query = Product.find(queryObj);
+
+    //sorting
+    const { sort } = req.query;
+    if (sort) {
+      const sortBy = sort.split(",").join(" ");
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort("-createdAt");
+    }
+
+    //fields limiting
+    const { fields } = req.query;
+    if (fields) {
+      const fieldsToShow = fields.split(",").join(" ");
+      query = query.select(fieldsToShow);
+    } else {
+      query = query.select("-__v");
+    }
+
+    //pagination
+    const { page } = req.query * 1 || 1;
+    const { limit } = req.query * 1 || 10;
+    const skip = (page - 1) * limit;
+
+    query = query.skip(skip).limit(limit);
+
+    if (req.query.page) {
+      const tourNums = await Tour.countDocuments();
+      if (skip > tourNums) {
+        res.status(StatusCodes.BAD_REQUEST).json({ msg: "Page not found" });
+      }
+    }
+
+    const products = await query;
     res
       .status(StatusCodes.OK)
       .json({ success: true, count: products.length, products });
