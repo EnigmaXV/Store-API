@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 require("dotenv").config();
 const connectDB = require("./db/connectDb");
 const authRoute = require("./routes/authRoute");
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static("./public"));
+app.use(fileUpload());
 
 // Routes
 app.use("/api/v1/auth", authRoute);
