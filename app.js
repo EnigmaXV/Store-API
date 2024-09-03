@@ -4,7 +4,8 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const connectDB = require("./db/connectDb");
 const authRoute = require("./routes/authRoute");
-const usersRoute = require("./routes/userRoute");
+const usersRoute = require("./routes/usersRoute");
+const productsRoute = require("./routes/productsRoute");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.static("./public"));
 // Routes
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", usersRoute);
+app.use("/api/v1/products", productsRoute);
 
 app.get("/", (req, res) => {
   //console.log(req.cookies);

@@ -1,38 +1,62 @@
 [
   {
-    "name": "accent chair",
-    "price": 25999,
-    "image": "https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160",
-    "colors": ["#ff0000", "#00ff00", "#0000ff"],
-    "company": "marcos",
-    "description": "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
-    "category": "office"
+    "name": "Gaming Laptop",
+    "price": 120000,
+    "image": "https://example.com/images/gaming-laptop.png",
+    "colors": ["#000000", "#FF0000"],
+    "company": "Alienware",
+    "description": "A high-end gaming laptop with powerful graphics and processing capabilities, suitable for hardcore gaming.",
+    "category": "Electronics",
+    "stock": 15,
+    "freeShipping": true,
+    "rating": 4.5
   },
   {
-    "name": "albany sectional",
-    "price": 109999,
-    "image": "https://dl.airtable.com/.attachmentThumbnails/0be1af59cf889899b5c9abb1e4db38a4/d631ac52",
-    "colors": ["#000", "#ffb900"],
-    "company": "liddy",
-    "description": "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
-    "category": "kitchen"
+    "name": "Yoga Mat",
+    "price": 2500,
+    "image": "https://example.com/images/yoga-mat.png",
+    "colors": ["#008000", "#FF69B4"],
+    "company": "YogaCompany",
+    "description": "A non-slip yoga mat that provides cushioning and support for various yoga poses and exercises.",
+    "category": "Sports",
+    "stock": 30,
+    "freeShipping": false,
+    "rating": 4
   },
   {
-    "name": "armchair",
-    "price": 12599,
-    "image": "https://dl.airtable.com/.attachmentThumbnails/530c07c5ade5acd9934c8dd334458b86/cf91397f",
-    "colors": ["#000", "#00ff00", "#0000ff"],
-    "company": "marcos",
-    "description": "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
-    "category": "bedroom"
+    "name": "Wireless Headphones",
+    "price": 5999,
+    "image": "https://example.com/images/wireless-headphones.png",
+    "colors": ["#000000", "#FFFFFF"],
+    "company": "SoundMagic",
+    "description": "Comfortable wireless headphones with noise-cancelling features and superior sound quality.",
+    "category": "Electronics",
+    "stock": 20,
+    "freeShipping": true,
+    "rating": 4.2
   },
   {
-    "name": "emperor bed",
-    "price": 23999,
-    "image": "https://dl.airtable.com/.attachmentThumbnails/0446e84c5bca9643de3452a61b2d6195/1b32f48b",
-    "colors": ["#0000ff", "#000"],
-    "company": "ikea",
-    "description": "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
-    "category": "bedroom"
+    "name": "Fiction Novel",
+    "price": 899,
+    "image": "https://example.com/images/fiction-novel.png",
+    "colors": ["#FFD700"],
+    "company": "Penguin Books",
+    "description": "An engaging fiction novel that captivates readers with its intriguing plot and well-developed characters.",
+    "category": "Books",
+    "stock": 50,
+    "freeShipping": false,
+    "rating": 4.8
+  },
+  {
+    "name": "Designer T-Shirt",
+    "price": 1500,
+    "image": "https://example.com/images/designer-tshirt.png",
+    "colors": ["#FFFFFF", "#000000", "#FF5733"],
+    "company": "FashionHub",
+    "description": "A stylish and comfortable designer t-shirt made from high-quality fabric, available in multiple colors.",
+    "category": "Clothes",
+    "stock": 25,
+    "freeShipping": false,
+    "rating": 4.3
   }
 ]
