@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const connectDB = require("./db/connectDb");
 const authRoute = require("./routes/authRoute");
+const usersRoute = require("./routes/userRoute");
 
 const app = express();
 
@@ -12,8 +13,9 @@ app.use(morgan("dev"));
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static("./public"));
 
-//Auth Routes
+// Routes
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/users", usersRoute);
 
 app.get("/", (req, res) => {
   //console.log(req.cookies);
