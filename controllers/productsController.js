@@ -147,6 +147,40 @@ const uploadImage = async (req, res) => {
   }
 };
 
+const getTopProducts = async (req, res) => {
+  try {
+    const products = await Product.find().sort("-rating price").limit(3);
+    res.status(StatusCodes.OK).json({ success: true, products });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: err.message });
+  }
+};
+
+const getProductsStats = async (req, res) => {
+  try {
+    const stats = await Product.aggregate([
+      { $match: { rating: { $gte: 4 } } },
+      {
+        $group: {
+          _id: null,
+          numProducts: { $sum: 1 },
+          avgRating: { $avg: "$rating" },
+          avgPrice: { $avg: "$price" },
+          minPrice: { $min: "$price" },
+          maxPrice: { $max: "$price" },
+        },
+      },
+      {
+        $sort: { avgPrice: 1 },
+      },
+    ]);
+
+    res.status(StatusCodes.OK).json({ success: true, stats });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: err.message });
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProduct,
@@ -154,4 +188,6 @@ module.exports = {
   deleteProduct,
   updateProduct,
   uploadImage,
+  getTopProducts,
+  getProductsStats,
 };
