@@ -1,5 +1,6 @@
 const Product = require("../models/productModel");
 const { StatusCodes } = require("http-status-codes");
+const Review = require("../models/reviewModel");
 const path = require("path");
 
 const getAllProducts = async (req, res) => {
@@ -88,7 +89,17 @@ const createProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    await Product.findOneAndDelete({ _id: id });
+    const product = await Product.findOne({ _id: id });
+    if (!product) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ msg: "Product not found" });
+    }
+
+    await Review.deleteMany({ product: product._id });
+
+    await product.deleteOne();
+
     res.status(StatusCodes.OK).json({ success: true, msg: "Product deleted" });
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: err.message });
