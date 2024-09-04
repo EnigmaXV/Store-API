@@ -100,10 +100,33 @@ const showActiveUser = async (req, res) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: err.message });
   }
 };
+
+const deleteActiveUser = async (req, res) => {
+  try {
+    const { password } = req.body;
+
+    const user = await User.findById(req.user.userId);
+
+    const isPasswordMatch = await user.comparePassword(password);
+
+    if (!isPasswordMatch) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ success: false, msg: "Invalid credentials" });
+    }
+    await User.findByIdAndDelete(req.user.userId);
+    res
+      .status(StatusCodes.OK)
+      .json({ success: true, msg: "User deleted Successfully" });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: err.message });
+  }
+};
 module.exports = {
   getAllUsers,
   getUser,
   updateUser,
   updatePassword,
   showActiveUser,
+  deleteActiveUser,
 };
