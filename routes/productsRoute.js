@@ -9,11 +9,17 @@ const {
   deleteProduct,
   updateProduct,
   uploadImage,
+  getTopProducts,
+  getProductsStats,
 } = require("../controllers/productsController");
 
 router.route("/").get(getAllProducts).post(protect, createProduct);
 
 router.route("/upload").post(protect, uploadImage);
+
+router.route("/top-products").get(getTopProducts);
+
+router.route("/products-stats").get(getProductsStats);
 
 router
   .route("/:id")
