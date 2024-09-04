@@ -7,6 +7,7 @@ const connectDB = require("./db/connectDb");
 const authRoute = require("./routes/authRoute");
 const usersRoute = require("./routes/usersRoute");
 const productsRoute = require("./routes/productsRoute");
+const reviewsRoute = require("./routes/reviewsRoute");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(fileUpload());
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/products", productsRoute);
+app.use("/api/v1/reviews", reviewsRoute);
 
 app.get("/", (req, res) => {
   //console.log(req.cookies);
