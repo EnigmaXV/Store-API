@@ -42,8 +42,8 @@ const getAllProducts = async (req, res) => {
     query = query.skip(skip).limit(limit);
 
     if (req.query.page) {
-      const tourNums = await Tour.countDocuments();
-      if (skip > tourNums) {
+      const numOfProducts = await Product.countDocuments();
+      if (skip > numOfProducts) {
         res.status(StatusCodes.BAD_REQUEST).json({ msg: "Page not found" });
       }
     }
