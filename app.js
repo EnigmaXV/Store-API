@@ -10,7 +10,24 @@ const productsRoute = require("./routes/productsRoute");
 const reviewsRoute = require("./routes/reviewsRoute");
 const ordersRoute = require("./routes/ordersRoute");
 
+//security packages
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+
 const app = express();
+
+app.set("trust proxy", 1);
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100,
+  })
+);
+app.use(helmet());
+app.use(cors());
+app.use(mongoSanitize());
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -24,12 +41,6 @@ app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/products", productsRoute);
 app.use("/api/v1/reviews", reviewsRoute);
 app.use("/api/v1/orders", ordersRoute);
-
-app.get("/", (req, res) => {
-  //console.log(req.cookies);
-  console.log(req.signedCookies);
-  res.send("<h1>Store API</h1><a href='/api/v1/auth/register'>Register</a>");
-});
 
 const port = process.env.PORT || 5000;
 
