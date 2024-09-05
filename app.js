@@ -8,6 +8,7 @@ const authRoute = require("./routes/authRoute");
 const usersRoute = require("./routes/usersRoute");
 const productsRoute = require("./routes/productsRoute");
 const reviewsRoute = require("./routes/reviewsRoute");
+const ordersRoute = require("./routes/ordersRoute");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/products", productsRoute);
 app.use("/api/v1/reviews", reviewsRoute);
+app.use("/api/v1/orders", ordersRoute);
 
 app.get("/", (req, res) => {
   //console.log(req.cookies);
