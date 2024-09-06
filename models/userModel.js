@@ -44,6 +44,17 @@ const userSchema = new mongoose.Schema({
   lockUntil: {
     type: Date,
   },
+  verificationToken: String,
+
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  verificationDate: Date,
+
+  resetPasswordToken: String,
+
+  resetPasswordTokenExpire: Date,
 });
 
 //hash password before saving it to the database

@@ -1,29 +1,64 @@
-const User = require("../models/userModel");
 const { StatusCodes } = require("http-status-codes");
-const { verifyToken } = require("../utils/jwt");
+const {
+  verifyAccessToken,
+  verifyRefreshToken,
+  createAccessToken,
+  createAccessCookie,
+} = require("../utils/jwt");
 
 const protect = async (req, res, next) => {
-  const { token } = req.signedCookies;
-
-  if (!token) {
+  const { accessToken, refreshToken } = req.signedCookies;
+  if (!accessToken && !refreshToken) {
     return res
       .status(StatusCodes.UNAUTHORIZED)
       .json({ error: "You need to be logged in" });
   }
 
-  try {
-    const decoded = verifyToken(token);
+  if (accessToken) {
+    try {
+      const decodedAccessToken = verifyAccessToken(accessToken);
+      if (!decodedAccessToken) {
+        return res
+          .status(StatusCodes.UNAUTHORIZED)
+          .json({ error: "You need to be logged in" });
+      }
+      req.user = decodedAccessToken;
+      return next();
+    } catch (error) {
+      if (
+        error.name === "JsonWebTokenError" ||
+        error.name === "TokenExpiredError"
+      ) {
+        return res
+          .status(StatusCodes.UNAUTHORIZED)
+          .json({ error: "You need to be logged in" });
+      }
+    }
+  }
 
-    if (!decoded) {
+  if (refreshToken) {
+    try {
+      const decodedRefreshToken = verifyRefreshToken(refreshToken);
+      if (!decodedRefreshToken) {
+        return res
+          .status(StatusCodes.UNAUTHORIZED)
+          .json({ error: "You need to be logged in" });
+      }
+
+      const newAccessTokenPayload = {
+        userId: decodedRefreshToken.userId,
+        name: decodedRefreshToken.name,
+        role: decodedRefreshToken.role,
+      };
+      const newAccessToken = createAccessToken(newAccessTokenPayload);
+      createAccessCookie(res, newAccessToken);
+      req.user = decodedRefreshToken;
+      return next();
+    } catch (err) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
         .json({ error: "You need to be logged in" });
     }
-
-    req.user = decoded;
-    next();
-  } catch (err) {
-    console.log(err);
   }
 };
 
