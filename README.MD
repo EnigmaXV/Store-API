@@ -6,129 +6,47 @@ A robust and feature-rich API built with Express and MongoDB, designed to effici
 
 #### Auth Routes
 
-```http
- POST /api/v1/auth/signup
-```
-
-```http
- POST /api/v1/auth/login
-```
-
-```http
- POST /api/v1/auth/verify-email
-```
-
-```http
- POST /api/v1/auth/reset-password
-```
+- **POST** `/api/v1/auth/signup`: Register a new user
+- **POST** `/api/v1/auth/login`: Log in an existing user
+- **POST** `/api/v1/auth/verify-email`: Verify user's email
+- **POST** `/api/v1/auth/reset-password`: Reset the user's password
 
 #### Orders Routes
 
-```http
- GET /api/v1/orders
-```
-
-```http
- POST /api/v1/orders
-```
-
-```http
- GET /api/v1/orders/my-orders
-```
-
-```http
- GET /api/v1/orders/:id
-```
-
-```http
- PATCH /api/v1/orders/:id
-```
-
-```http
- DELETE /api/v1/orders/:id
-```
+- **GET** `/api/v1/orders`: Get all orders (Admin only)
+- **POST** `/api/v1/orders`: Create a new order
+- **GET** `/api/v1/orders/my-orders`: Get the current user's orders
+- **GET** `/api/v1/orders/:id`: Get a specific order by ID
+- **PATCH** `/api/v1/orders/:id`: Update a specific order (Admin only)
+- **DELETE** `/api/v1/orders/:id`: Delete a specific order by ID
 
 #### Products Routes
 
-```http
- GET /api/v1/products
-```
-
-```http
- POST /api/v1/products
-```
-
-```http
- POST /api/v1/products/upload
-```
-
-```http
- GET /api/v1/products/top-products
-```
-
-```http
- GET /api/v1/products/products-stats
-```
-
-```http
- GET /api/v1/products/:id
-```
-
-```http
- PATCH /api/v1/products/:id
-```
-
-```http
- DELETE /api/v1/products/:id
-```
+- **GET** `/api/v1/products`: Get all products
+- **POST** `/api/v1/products`: Create a new product
+- **POST** `/api/v1/products/upload`: Upload product images
+- **GET** `/api/v1/products/top-products`: Get the top products
+- **GET** `/api/v1/products/products-stats`: Get product statistics
+- **GET** `/api/v1/products/:id`: Get a specific product by ID
+- **PATCH** `/api/v1/products/:id`: Update a specific product (Admin only)
+- **DELETE** `/api/v1/products/:id`: Delete a specific product (Admin only)
 
 #### Reviews Routes
 
-```http
-  GET /api/v1/reviews
-```
-
-```http
-  POST /api/v1/reviews
-```
-
-```http
-  GET /api/v1/reviews/:id
-```
-
-```http
-  PATCH /api/v1/reviews/:id
-```
-
-```http
-  POST /api/v1/reviews/:id
-```
+- **GET** `/api/v1/reviews`: Get all reviews
+- **POST** `/api/v1/reviews`: Create a new review
+- **GET** `/api/v1/reviews/:id`: Get a specific review by ID
+- **PATCH** `/api/v1/reviews/:id`: Update a specific review
+- **DELETE** `/api/v1/reviews/:id`: Delete a specific review
 
 #### Users Routes
 
-```http
- GET /api/v1/users
-```
-
-```http
- GET /api/v1/users/me
-```
-
-```http
- PATCH /api/v1/users/updatePassword
-```
-
-```http
- PATCH /api/v1/users/updateMe
-```
-
-```http
- POST /api/v1/users/deleteMe
-```
-
-```http
- GET /api/v1/users/:id
-```
+- **GET** `/api/v1/users`: Get all users (Admin only)
+- **GET** `/api/v1/users/me`: Get the currently logged-in user's details
+- **PATCH** `/api/v1/users/updatePassword`: Update the current user's password
+- **PATCH** `/api/v1/users/updateMe`: Update the current user's details
+- **POST** `/api/v1/users/deleteMe`: Deactivate the current user's account
+- **GET** `/api/v1/users/:id`: Get a specific user by ID
 
 ## Tech Stack
 
