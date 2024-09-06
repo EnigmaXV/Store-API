@@ -110,14 +110,14 @@ Delete Orders
 
 To run this project, you will need to add the following environment variables to your `.env` file:
 
-| Variable             | Description                                         |
-| -------------------- | --------------------------------------------------- |
-| `PORT`               | The port number on which the server will run        |
-| `MONGO_PASSWORD`     | MongoDB user password                               |
-| `MONGO_URI`          | MongoDB connection string                           |
-| `JWT_SECRET`         | Secret key for signing JWT access tokens            |
-| `MAX_FILE_UPLOAD`    | Maximum file upload size (default: `1048576` bytes) |
-| `JWT_REFRESH_SECRET` | Secret key for signing JWT refresh tokens           |
+| Variable             | Description                                                    |
+| -------------------- | -------------------------------------------------------------- |
+| `PORT`               | The port number on which the server will run (default: `5000`) |
+| `MONGO_PASSWORD`     | MongoDB user password                                          |
+| `MONGO_URI`          | MongoDB connection string                                      |
+| `JWT_SECRET`         | Secret key for signing JWT access tokens                       |
+| `MAX_FILE_UPLOAD`    | Maximum file upload size (default: `1048576` bytes)            |
+| `JWT_REFRESH_SECRET` | Secret key for signing JWT refresh tokens                      |
 
 ## Features
 
